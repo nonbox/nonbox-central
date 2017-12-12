@@ -1,3 +1,11 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  scope :v1, defaults: {format: :json} do
+    scope :companion do
+      get  'tutorials', to: 'v1/companion#tutorials'
+      post 'report/:type', to: 'v1/companion#report'
+    end
+  end
+
+  root 'application#index'
 end
